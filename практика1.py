@@ -1,0 +1,6 @@
+name = input("Введите фамилию, имя: ")
+years = input("Введите свой возраст: ")
+locations = input("Где вы живёте? ")
+print(name)
+print(years)
+print(locations)
