@@ -1,0 +1,109 @@
+import java.util.*;
+import java.util.Arrays;
+
+public class Class_Work_1 {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Задача 1: Введите две строки (вторая должна быть окончанием первой):");
+        task1(scanner);
+
+        System.out.println("\nЗадача 2: Введите имя (например, aHnA):");
+        task2(scanner);
+
+        System.out.println("\nЗадача 3: Введите строку для удаления гласных:");
+        task3(scanner);
+
+        System.out.println("\nЗадача 4: Введите два числа для вычисления квадратов:");
+        task4(scanner);
+
+        System.out.println("\nЗадача 5: Введите три числа (начало ряда, шаг, количество чисел):");
+        task5(scanner);
+
+        System.out.println("\nЗадача 6: Введите последовательность чисел (для остановки введите не число):");
+        task6(scanner);
+        scanner.nextLine();
+
+        System.out.println("\nЗадача 7: Введите строку из слов для поиска повторов:");
+        task7(scanner);
+
+        System.out.println("\nЗадача 8: Введите строку символов для сортировки:");
+        task8(scanner);
+    }
+
+    static void task1(Scanner scanner) {
+        String str1 = scanner.nextLine();
+        String str2 = scanner.nextLine();
+        System.out.println("Результат: " + str1.endsWith(str2));
+    }
+
+    static void task2(Scanner scanner) {
+        String name = scanner.nextLine();
+        String properName = name.substring(0, 1).toUpperCase() + name.substring(1).toLowerCase();
+        System.out.println("Привет, " + properName + "!");
+    }
+
+    static void task3(Scanner scanner) {
+        String input = scanner.nextLine();
+        String result = input.replaceAll("[aeiouAEIOUаеёиоуыэюяАЕЁИОУЫЭЮЯ]", "");
+        System.out.println("Результат: " + result);
+    }
+
+    static void task4(Scanner scanner) {
+        int a = scanner.nextInt();
+        int b = scanner.nextInt();
+        int start = Math.min(a, b);
+        int step = Math.abs(a - b);
+        System.out.print("Квадраты: ");
+        for (int i = 0; i < 5; i++) {
+            int val = start + i * step;
+            System.out.print((val * val) + " ");
+        }
+        System.out.println();
+        scanner.nextLine(); // очистка буфера
+    }
+
+    static void task5(Scanner scanner) {
+        int start = scanner.nextInt();
+        int step = scanner.nextInt();
+        int count = scanner.nextInt();
+        System.out.print("Ряд: ");
+        for (int i = 0; i < count; i++) {
+            System.out.print((start + i * step) + " ");
+        }
+        System.out.println();
+        scanner.nextLine(); // очистка буфера
+    }
+
+    static void task6(Scanner scanner) {
+        Queue<Integer> memory = new LinkedList<>();
+        while (scanner.hasNextInt()) {
+            int num = scanner.nextInt();
+            if (memory.size() == 3) memory.poll();
+            memory.add(num);
+            System.out.println("Память: " + memory);
+        }
+        scanner.nextLine(); // очистка буфера после выхода
+    }
+
+    static void task7(Scanner scanner) {
+        String text = scanner.nextLine();
+        String[] words = text.split(" ");
+        Set<String> seen = new HashSet<>();
+        for (String word : words) {
+            if (seen.contains(word)) {
+                System.out.println("Повтор: " + word);
+                return;
+            }
+            seen.add(word);
+        }
+        System.out.println("Повторов нет");
+    }
+
+    static void task8(Scanner scanner) {
+        String str = scanner.nextLine();
+        char[] chars = str.toCharArray();
+        Arrays.sort(chars);
+        System.out.println("Результат: " + new String(chars).toLowerCase());
+    }
+}
